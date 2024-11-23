@@ -11,7 +11,6 @@ import { TbPaperclip } from 'react-icons/tb'
 export default function Chatinput({id}:{id:string}) {
     const [prompt, setprompt] = useState("")
     const {data:session} = useSession()
-    const [loading, setloading] = useState(false)
     const model = "gpt-3.5-turbo";
     const userEmail = session?.user? (session?.user?.email as string):"unknown";
     const userName = session?.user? (session?.user?.email as string):"unknown";
@@ -30,7 +29,6 @@ export default function Chatinput({id}:{id:string}) {
          }
       }
      try{
-        setloading(true)
         let chatDocumentId = id
         if(!id){
           const docRef = await addDoc(
@@ -77,7 +75,6 @@ export default function Chatinput({id}:{id:string}) {
         console.log(error);
         
      }finally{
-      setloading(false)
 
      }
     }
